@@ -1,20 +1,10 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro"
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Animation Class</title>
-	</head>
-	<body>
-		<div class="grid place-items-center h-screen content-center bg-dark text-light">
-			<h1 class="text-4xl text-lime">Animation Class</h1>
-			<h2>Kevin Clemons</h2>
-		</div>
-	</body>
-</html>
+<BaseLayout title="Animation Class - Kevin Clemons">
+	<div class="grid place-items-center h-screen content-center bg-dark text-light">
+		<h1 class="text-4xl text-lime">Animation Class</h1>
+		<h2>Kevin Clemons</h2>
+	</div>
+</BaseLayout>

@@ -1,0 +1,49 @@
+---
+const {borderColor1 = 'red', borderColor2 = 'white'} = Astro.props
+---
+
+<div class="rainbow-border position-relative z-1">
+  <slot/>
+</div>
+
+<style define:vars={{ borderColor1, borderColor2 }}>
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.rainbow-border:hover {
+  &::after, &::before {
+    animation: spin 2.5s linear infinite;    
+  }
+  &::after {
+    filter: blur(8px);
+  }
+}
+
+.rainbow-border::after, .rainbow-border::before {
+  content: "";
+  position: absolute;
+  border-radius: 0.25rem;
+  z-index: -1;
+  inset: -2px;
+  background-image: conic-gradient(
+    from var(--angle),
+    var(--borderColor2) 0deg,
+    var(--borderColor1) 30deg,
+    var(--borderColor1) 330deg,
+    var(--borderColor2) 360deg
+  );
+  
+}
+.rainbow-border::after {
+  filter: blur(1px);
+  transition: filter 0.3s;
+}
+
+@keyframes spin {
+  to {
+    --angle: 360deg;
+  }
+}
+</style>

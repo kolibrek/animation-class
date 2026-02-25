@@ -1,0 +1,13 @@
+---
+const { tiltFactor, scaleFactor } = Astro.props
+---
+<script>
+  import 'hover-tilt/web-component';
+</script>
+
+<hover-tilt 
+  tilt-factor={tiltFactor}
+  scale-factor={scaleFactor}
+  class="[&::part(container)]:rounded">
+  <slot />
+</hover-tilt>
