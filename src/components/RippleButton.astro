@@ -1,0 +1,24 @@
+---
+const {color1, color2} = Astro.props
+---
+<div class="ripple rounded">
+  <slot />
+</div>
+
+<style define:vars={{ color1, color2 }}>
+.ripple {
+  background-position: center;
+  transition: background 0.8s, transform 0.2s;
+  will-change: transform;
+  background-color: var(--color1);
+}
+.ripple:hover {
+  background: var(--color1) radial-gradient(circle, transparent 1%, var(--color1) 1%) center/15000%;
+  transform: scale(1.1);
+}
+.ripple:active {
+  background-color: var(--color2);
+  background-size: 100%;
+  transition: background 0s;
+}
+</style>
