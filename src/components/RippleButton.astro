@@ -1,24 +1,57 @@
 ---
-const {color1, color2} = Astro.props
+
 ---
-<div class="ripple rounded">
+<script>
+function createRipple(event: MouseEvent) {
+  const button = event.currentTarget! as HTMLDivElement;
+  const circle = document.createElement('span');
+  const diameter = Math.max(button.clientWidth, button.clientHeight);
+  const radius = diameter / 2;
+
+  circle.style.width = circle.style.height = `${diameter}px`;
+  circle.style.left = `${event.clientX - (button.offsetLeft + radius)}px`;
+  circle.style.top = `${event.clientY - (button.offsetTop + radius)}px`;
+  circle.classList.add('circle');
+
+  const ripple = button.getElementsByClassName("circle")[0]
+  if (ripple)
+    ripple.remove()
+
+  button.appendChild(circle);
+}
+
+const rippleButton = document.querySelector('.ripple')! as HTMLDivElement;
+rippleButton.addEventListener('click', createRipple);
+</script>
+<div class="ripple rounded hover:rounded-xl bg-emerald hover:bg-emerald-7 transition-all-500">
   <slot />
 </div>
 
-<style define:vars={{ color1, color2 }}>
+
+<style>
 .ripple {
+  position: relative;
   background-position: center;
-  transition: background 0.8s, transform 0.2s;
   will-change: transform;
-  background-color: var(--color1);
+  z-index: inherit;
+  overflow: hidden;
+
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 600ms linear;
+    background-color: #fffa;
+  }
 }
 .ripple:hover {
-  background: var(--color1) radial-gradient(circle, transparent 1%, var(--color1) 1%) center/15000%;
   transform: scale(1.1);
 }
-.ripple:active {
-  background-color: var(--color2);
-  background-size: 100%;
-  transition: background 0s;
+
+@keyframes ripple {
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
 }
 </style>
