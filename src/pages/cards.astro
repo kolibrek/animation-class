@@ -1,0 +1,38 @@
+---
+import Card from "../components/Card.astro";
+import NavBar from "../components/NavBar.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import birdImage from '../images/bird_in_tree.jpg';
+import rockImage from '../images/rocks_on_beach.jpg';
+import mountainImage from '../images/mountain_from_bus.jpg';
+---
+
+<BaseLayout title="Cards - Kevin Clemons">
+  <main class="grid gap-8 place-items-center lg:h-screen content-center">
+    <header class="grid place-items-center gap-8">
+      <NavBar/>
+      <h1 class="text-4xl text-lime">Cards</h1>
+    </header>
+    <section class="grid grid-cols-[24rem] lg:grid-cols-[repeat(3,24rem)] gap-4">
+      <Card
+        heading="Green Bird in the Blossoms"
+        description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe voluptatem ipsum similique quo suscipit ullam totam vero veritatis voluptas. Provident."
+        image={birdImage}
+        overlay="#e67"
+        alt="green bird in a pink tree"/>
+      <Card
+        heading="Wading River"
+        description="A quiet pebble beach on the north side of Long Island"
+        image={rockImage}
+        overlay="#36f"
+        alt="boulders on a rocky beach"/>
+      <Card
+        heading="Mountains as We Pass"
+        description="A bus trip passes by majestic mountains reaching for the heavens. Those aboard are captivated by the sight."
+        image={mountainImage}
+        overlay="#393"
+        alt="mountains as seen from a bus"/>
+    </section>
+  </main>
+</BaseLayout>
