@@ -5,7 +5,7 @@ const {heading, description, overlay = '#000', image, alt} = Astro.props;
 ---
 
 <div class="card">
-  <Image class="image" src={image} alt={alt} height={640}/>
+  <Image class="image transition-transform-600" src={image} alt={alt} height={640}/>
   <h3 class="text-3xl mb-2">{heading}</h3>
   <p>{description}</p>
 </div>
@@ -17,7 +17,8 @@ const {heading, description, overlay = '#000', image, alt} = Astro.props;
   flex-direction: column;
   justify-content: flex-end;
   padding: 2rem;
-  border-radius: 1rem;
+  border-radius: 1.1rem;
+  border: solid 4px #fff1;
   height: 640px;
   overflow: hidden;
   z-index: inherit;
@@ -40,13 +41,13 @@ const {heading, description, overlay = '#000', image, alt} = Astro.props;
     height:100%;
     z-index: -2;
     border-radius: 1rem;
-    border: solid 4px #fff1;
   }
 
   h3, p {
     transition: opacity 0.4s ease, transform 0.4s ease;
     opacity: 0;
     transform: translateY(30px);
+    text-shadow: 0 0 4px #000;
   }
   p {
     transition-delay: 300ms;
@@ -57,6 +58,11 @@ const {heading, description, overlay = '#000', image, alt} = Astro.props;
       opacity: 1;
       transform: translateY(0px);
     }
+
+    .image {
+      transform: scale(1.1);
+    }
+
     &::before {
       opacity: 0.4;
     }
