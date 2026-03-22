@@ -12,7 +12,7 @@ import NavBar from "../components/NavBar.astro";
     <section class="grid position-relative place-items-center sm:grid-cols-[repeat(3,1fr)] gap-16">
       <div class="animated-icon bg-rose" id="icon-1"></div>
       <div class="animated-icon" id="icon-2"></div>
-      <div class="perspective-300">
+      <div class="perspective-300" id="cube-container">
         <div class="animated-icon" id="icon-3">
           <div></div>
         </div>
@@ -27,6 +27,13 @@ import NavBar from "../components/NavBar.astro";
     height: 128px;
   }
 
+  #icon-2, #icon-3 {
+    &::before, &::after, div::before, div::after {
+      content: "";
+      position: absolute;
+    }
+  }
+
   #icon-1 {
     animation: spin 20s linear infinite, morph 5s ease infinite alternate;
   }
@@ -39,8 +46,6 @@ import NavBar from "../components/NavBar.astro";
     animation: hue 10s linear infinite, shake 5s ease infinite alternate-reverse;
 
     &::before {
-      content: "";
-      position: absolute;
       inset: 50% 0% 0% 0%;
       border-bottom-right-radius: 64px;
       border-bottom-left-radius: 64px;
@@ -49,8 +54,6 @@ import NavBar from "../components/NavBar.astro";
     }
 
     &::after {
-      content: "";
-      position: absolute;
       inset: 40% 0% 40% 0%;
       border-radius: 100%;
       background-color: #0f0;
@@ -65,12 +68,9 @@ import NavBar from "../components/NavBar.astro";
     transform-origin: 50% 50%;
     width: var(--diameter);
     height: var(--diameter);
-    /* background-color: hsla(208, 100%, 50%, 0.533); */
-    animation: turnY 4s linear infinite;
+    animation: turnYZ 4s linear infinite;
 
     &::before {
-      content: "";
-      position: absolute;
       width: 100%;
       height: 100%;
       background-color: hsla(238, 100%, 50%, 0.533);
@@ -78,8 +78,6 @@ import NavBar from "../components/NavBar.astro";
     }
 
     &::after {
-      content: "";
-      position: absolute;
       width: 100%;
       height: 100%;
       background-color: hsla(98, 100%, 50%, 0.533);
@@ -94,16 +92,12 @@ import NavBar from "../components/NavBar.astro";
       transform: rotateX(90deg) translateZ(var(--radius));
 
       &::before {
-        content: "";
-        position: absolute;
         width: 100%;
         height: 100%;
         background-color: hsla(158, 100%, 50%, 0.533);
         transform: translateZ(calc(var(--diameter) * -1));
       }
       &::after {
-        content: "";
-        position: absolute;
         width: 100%;
         height: 100%;
         background-color: hsla(298, 100%, 50%, 0.533);
@@ -126,13 +120,8 @@ import NavBar from "../components/NavBar.astro";
     to { transform: rotate(1turn); }
   }
 
-  @keyframes turnY {
+  @keyframes turnYZ {
     to { transform: rotate3d(0,1,1, 1turn); }
-  }
-
-  @keyframes rotateX {
-    from { transform: rotate3d(0, 1, 0, 0deg)}
-    to { transform: rotate3d(0, 1, 0, 360deg); }
   }
 
   @keyframes morph {
