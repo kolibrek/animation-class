@@ -68,4 +68,9 @@ const {heading, description, overlay = '#000', image, alt} = Astro.props;
     }
   }
 }
+@media (prefers-color-scheme: light) {
+  .card {h3, p {
+    text-shadow: 0 0 4px #fff;
+  }}
+}
 </style>

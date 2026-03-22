@@ -7,7 +7,7 @@ import NavBar from "../components/NavBar.astro";
   <main class="min-h-screen grid place-items-center content-center gap-16">
     <header class="grid place-items-center gap-8">
       <NavBar/>
-      <h1 class="text-4xl text-lime">Animated Objects</h1>
+      <h1 class="text-4xl">Animated Objects</h1>
     </header>
     <section class="grid position-relative place-items-center sm:grid-cols-[repeat(3,1fr)] gap-16">
       <div class="animated-icon bg-rose" id="icon-1"></div>
@@ -57,6 +57,12 @@ import NavBar from "../components/NavBar.astro";
       inset: 40% 0% 40% 0%;
       border-radius: 100%;
       background-color: #0f0;
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    #icon-2 {
+      background-color: #0001;
     }
   }
 
