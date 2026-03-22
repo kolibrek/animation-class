@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar.astro";
 ---
 
 <BaseLayout title="Animated Objects - Kevin Clemons">
-  <main class="h-screen grid place-items-center content-center gap-16">
+  <main class="min-h-screen grid place-items-center content-center gap-16">
     <header class="grid place-items-center gap-8">
       <NavBar/>
       <h1 class="text-4xl text-lime">Animated Objects</h1>
@@ -12,7 +12,7 @@ import NavBar from "../components/NavBar.astro";
     <section class="grid position-relative place-items-center sm:grid-cols-[repeat(3,1fr)] gap-16">
       <div class="animated-icon bg-rose" id="icon-1"></div>
       <div class="animated-icon" id="icon-2"></div>
-      <div class="perspective-300" id="cube-container">
+      <div class="perspective-300 w-32 h-32 grid place-items-center">
         <div class="animated-icon" id="icon-3">
           <div></div>
         </div>
