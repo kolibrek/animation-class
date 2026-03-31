@@ -8,6 +8,7 @@ import rockImage from '../images/rocks_on_beach.jpg';
 import mountainImage from '../images/mountain_from_bus.jpg';
 ---
 <script>
+  // Javascript scroll-watcher, works on all browsers
   document.onscroll = () => {
     let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -18,12 +19,10 @@ import mountainImage from '../images/mountain_from_bus.jpg';
     }
   };
 
+  // For browsers that don't support animation-timeline CSS
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting)
-        entry.target.classList.add('show');
-      else
-        entry.target.classList.remove('show');
+      entry.isIntersecting ? entry.target.classList.add('show') : entry.target.classList.remove('show');
     });
   });
   const hiddenElements = document.querySelectorAll('.fade-hidden');
@@ -83,11 +82,27 @@ import mountainImage from '../images/mountain_from_bus.jpg';
   }
   .fade-hidden {
     opacity: 0;
-    transform: translateX(-16px);
+    transform: scale(0.8) translateX(-16px);
     transition: opacity 2s, transform 1s ease-out;
+    
   }
-  .show {
-    opacity: 1;
-    transform: translateX(0);
+  @supports (animation-timeline: view()) {
+    .fade-hidden {
+      animation: fade-in linear forwards;
+      animation-timeline: view();
+      animation-range: 250px 500px;
+    }
+  }
+  @supports not (animation-timeline: view()) {
+    .show {
+      opacity: 1;
+      transform: scale(1) translateX(0);
+    }
+  }
+  @keyframes fade-in {
+    to {
+      transform: scale(1) translateX(0);
+      opacity: 1;
+    }
   }
 </style>
